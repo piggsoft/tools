@@ -36,10 +36,20 @@
     <script src="numberedtextarea.js"></script>
     <link rel="stylesheet" href="../base.css">
     <link rel="stylesheet" href="numberedtextarea.css">
+    <script src="https://cdn.bootcss.com/clipboard.js/1.6.1/clipboard.min.js"></script>
+    <!--<script src="message.js"></script>-->
     <script type="text/javascript">
         var shown_flag = false;
         $(function () {
             $('textarea').numberedtextarea();
+            
+            $('.tip').tooltip();
+            
+            //初始化复制功能
+            var clipboard = new Clipboard('.save');
+            clipboard.on('success', function() {
+                alert("复制成功");
+            });
 
             $('#json-src').keyup(function () {
                 //init();
@@ -136,9 +146,8 @@
         </div>
         <div class="col-md-7" style="padding:0;">
             <div style="padding:10px;font-size:16px;border-bottom:solid 1px #ddd;" class="navi">
-                <a href="javascript:;" title="显示行号" class="tip shown" title="" data-placement="bottom" data-original-title="显示行号"><i class="glyphicon glyphicon-sort-by-order"></i></a>
-                <a href="#" class="tip clear" title="" data-placement="bottom" data-original-title="清空"><i class="fa fa-trash"></i></a>
-                <a href="#" class="tip save" title="" data-placement="bottom" data-original-title="保存"><i class="fa fa-floppy-o"></i></a>
+                <a href="javascript:;" class="tip shown" title="" data-placement="bottom" data-original-title="显示行号"><i class="glyphicon glyphicon-sort-by-order"></i></a>
+                <a href="javascript:;" class="tip save" data-clipboard-action="copy" data-clipboard-target="#json-target" data-placement="bottom" data-original-title="复制"><i class="fa fa-copy"></i></a>
             </div>
             <div id="right-box" style="height:510px;border-right:solid 1px #ddd;border-bottom:solid 1px #ddd;border-radius:0;resize: none;overflow-y:scroll; outline:none;position:relative;">
                 <div id="line-num" style="background-color:#fafafa;padding:0px 8px;float:left;border-right:dashed 1px #eee;display:none;z-index:-1;color:#999;position:absolute;text-align:center;over-flow:hidden;">

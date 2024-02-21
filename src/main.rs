@@ -5,7 +5,7 @@ mod make_link;
 #[derive(Parser)] // requires `derive` feature
 #[command(name = "tools", bin_name = "tools", version = "0.1.0", about = "Piggsoft的工具包")]
 enum ToolsCli {
-    #[command(name = "makeLink", about = "将<source>文件迁移到<target>，并将<source>变为软链接")]
+    #[command(name = "makeLink", version="0.1.0", about = "将<source>文件迁移到<target>，并将<source>变为软链接")]
     MakeLink(MakeLinkArgs),  //subcommand
 
     #[command(name = "Host", about = "打印host")]

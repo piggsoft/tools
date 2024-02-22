@@ -3,6 +3,10 @@ name = "tools"
 version = "0.1.0"
 edition = "2021"
 description = "Piggsoft的工具包"
+license = "Apache-2.0"
+documentation = "Piggsoft的工具包"
+homepage = "https://github.com/piggsoft/tools"
+repository = "https://github.com/piggsoft/tools.git"
 
 [features]
 

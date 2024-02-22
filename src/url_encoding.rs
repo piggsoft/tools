@@ -1,17 +1,28 @@
+use std::process;
 use urlencoding;
 
 #[derive(clap::Args, Debug)]
 pub(crate) struct UrlEncodeArgs {
     url: String,
-    #[arg(required = false, long = "type", short = 't', default_value = "encode", help = "encode代表加密，decode代表节目，默认不传为：decode")]
-    en_type: String,
+    #[arg(short, long, action = clap::ArgAction::Count, help = "加密模式")]
+    encode: u8,
+    #[arg(short, long, action = clap::ArgAction::Count, help = "解密模式")]
+    decode: u8,
 }
 
-pub(crate) fn process_auto(args: &UrlEncodeArgs) {
-    if args.en_type == "encode" {
-        process_encode(args);
-    } else if args.en_type == "decode" {
-        process_decode(args);
+pub(crate) fn process_auto(url_encode_args: &UrlEncodeArgs) {
+    if url_encode_args.encode > 0 && url_encode_args.decode > 0 {
+        println!("加密模式(encode)和解密模式(decode)不能同时开启");
+        process::exit(-1);
+    } else if url_encode_args.encode == 0 && url_encode_args.decode ==0 {
+        println!("需要指定为加密模式(encode)或者解密模式(decode)");
+        process::exit(-1);
+    }
+
+    if url_encode_args.encode > 0 {
+        process_encode(url_encode_args);
+    } else if url_encode_args.decode > 0 {
+        process_decode(url_encode_args);
     }
 }
 

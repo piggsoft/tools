@@ -4,6 +4,7 @@ use clap::{arg, command, Parser, Subcommand};
 
 mod make_link;
 mod url_encoding;
+mod codec;
 
 
 #[derive(Parser)] // requires `derive` feature
@@ -24,6 +25,8 @@ enum Commands {
     MakeLink(make_link::MakeLinkArgs),
     #[command(name = "urlencode", version = "0.1.0", about = "对url进行encode和decode,字符编码为utf8")]
     UrlEncode(url_encoding::UrlEncodeArgs),
+    #[command(name = "codec", version = "0.1.0", about = "加解密工具集合")]
+    Codec(codec::CodecArgs),
 }
 
 
@@ -43,10 +46,13 @@ fn main() {
     // matches just as you would the top level cmd
     match &cli.command {
         Some(Commands::MakeLink(args)) => {
-            make_link::make_link(&args);
+            make_link::make_link(args);
         },
         Some(Commands::UrlEncode(args)) => {
-            url_encoding::process_auto(&args);
+            url_encoding::process_auto(args);
+        },
+        Some(Commands::Codec(args)) => {
+            codec::codec_auto(args);
         },
 
         None => {}

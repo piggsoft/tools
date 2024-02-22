@@ -36,8 +36,8 @@ fn replace_path_prefix(source: &String) -> String {
         .replace("c:/", "d:/")
 }
 
-pub(crate) fn make_link(args: &MakeLinkArgs) {
-    process_link(&args.source, &args.target);
+pub(crate) fn make_link(make_link_args: &MakeLinkArgs) {
+    process_link(&make_link_args.source, &make_link_args.target);
 }
 
 pub(crate) fn process_link(source: &String, target: &Option<String>) {

@@ -5,8 +5,6 @@ pub(crate) struct UrlEncodeArgs {
     url: String,
     #[arg(required = false, long = "type", short = 't', default_value = "encode", help = "encode代表加密，decode代表节目，默认不传为：decode")]
     en_type: String,
-    #[arg(required = false, long, short, default_value = "utf8", help = "字符编码，不传默认为：utf8")]
-    encoding: String,
 }
 
 pub(crate) fn process_auto(args: &UrlEncodeArgs) {

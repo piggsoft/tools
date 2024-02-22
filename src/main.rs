@@ -22,7 +22,7 @@ struct ToolsCli {
 enum Commands {
     #[command(name = "makeLink", version = "0.1.0", about = "将<source>文件迁移到<target>，并将<source>变为软链接")]
     MakeLink(make_link::MakeLinkArgs),
-    #[command(name = "urlencode", version = "0.1.0", about = "对url进行encode和decode")]
+    #[command(name = "urlencode", version = "0.1.0", about = "对url进行encode和decode,字符编码为utf8")]
     UrlEncode(url_encoding::UrlEncodeArgs),
 }
 

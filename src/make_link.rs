@@ -1,7 +1,7 @@
 use std::{io, process};
 
 #[derive(clap::Args, Debug)]
-pub(crate) struct MakeLinkArgs {
+pub struct MakeLinkArgs {
     #[arg(required = true, long, short = 's', help = "原始文件或者目录")]
     source: String,
     #[arg(required = false, long, short = 't', help = "迁移的目标文件或者目录，保证在迁移前无该文件或目录", long_help = "不传时，将使用<source_path>，并将其开头的<C:>改成<D:>")]
@@ -36,11 +36,11 @@ fn replace_path_prefix(source: &String) -> String {
         .replace("c:/", "d:/")
 }
 
-pub(crate) fn make_link(make_link_args: &MakeLinkArgs) {
+pub fn make_link(make_link_args: &MakeLinkArgs) {
     process_link(&make_link_args.source, &make_link_args.target);
 }
 
-pub(crate) fn process_link(source: &String, target: &Option<String>) {
+pub fn process_link(source: &String, target: &Option<String>) {
     let replace_source_prefix = replace_path_prefix(&source);
     let target_path = target.as_ref().unwrap_or(&replace_source_prefix);
     let source_path = source;
